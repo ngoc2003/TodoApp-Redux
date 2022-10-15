@@ -22,15 +22,11 @@ export default function TodoList() {
           </>
         )}
         {todoList.length ? (
-          todoList.map((todo) => (
-            <Todo
-              key={todo.id}
-              id={todo.id}
-              completed={todo.completed}
-              name={todo.name}
-              priority={todo.priority}
-            />
-          ))
+          <div className = 'max-h-[310px] overflow-auto pr-5 todoList'>
+            {todoList.map((todo, index) => (
+              <Todo key={todo.id} todo={todo} index={index} />
+            ))}
+          </div>
         ) : (
           <div className="flex items-center justify-center h-full">
             No result founded!

@@ -5,12 +5,26 @@ export const addTodo = (data) => {
   };
 };
 
+export const deleteTodo = (data) => {
+  return {
+    type: "delete",
+    payload: data,
+  };
+};
+
+export const updateTodo = (data) => {
+  return {
+    type: "update",
+    payload: data,
+  };
+};
+
 export const completedTodo = (data) => {
   return {
-    type: 'completedTodo',
-    payload: data
-  }
-}
+    type: "completedTodo",
+    payload: data,
+  };
+};
 
 export const searchFilter = (value) => {
   return {

@@ -24,7 +24,7 @@ export default function Filters() {
   }
   return (
     <Row justify="center">
-      <Col span={24}>
+      <Col span={24} xs={48}>
         <Typography.Paragraph className="mt-3 mb-1 font-bold">
           Search
         </Typography.Paragraph>
@@ -34,8 +34,8 @@ export default function Filters() {
           placeholder="Search here"
         />
       </Col>
-      <Col sm={24}>
-        <Typography.Paragraph className="mt-3 font-bold mg-1">
+      <Col sm={24} xs={48}>
+        <Typography.Paragraph className="mt-3 font-bold text-center mg-1 xxs:text-left">
           Filter By Status
         </Typography.Paragraph>
         <Radio.Group value = {filterStatus} onChange={handleStatusChange}>
@@ -44,7 +44,7 @@ export default function Filters() {
           <Radio value="pending">Pending</Radio>
         </Radio.Group>
       </Col>
-      <Col sm={24}>
+      <Col sm={24} xs={48} >
         <Typography.Paragraph className="mt-3 font-bold mg-1">
           Filter By Priority
         </Typography.Paragraph>

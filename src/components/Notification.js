@@ -11,6 +11,16 @@ export const notiConfig = {
     description: "Add your new todo successfully ! Please check your todo list",
     duration: duration,
   },
+  deleteSuccess: {
+    message: "Success !",
+    description: "Delete data successfully !",
+    duration: duration,
+  },
+  updateSuccess: {
+    message: "Success !",
+    description: "Update data successfully !",
+    duration: duration,
+  },
   loadSuccess: {
     message: "Load data success !",
     description: "Loading data successfully !",
