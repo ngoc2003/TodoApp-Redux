@@ -1,12 +1,15 @@
-import { Col, Row, Input, Button, Select, Tag, Divider } from "antd";
+import { Col, Row, Divider, notification } from "antd";
 import Todo from "./Todo";
-import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
-import { todoFilter, todoListSelector } from "../redux/selector";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { todoListSelector } from "../redux/selector";
 import useDebounce from "../hooks/useDebounce";
+import { notiConfig } from "./Notification";
 export default function TodoList() {
-  // const dispatch = useDispatch();
   const todoList = useDebounce(useSelector(todoListSelector));
+  useEffect(() => {
+    notification.success(notiConfig.loadSuccess);
+  }, []);
   return (
     <Row className="flex-1">
       <Col span={24}>
@@ -20,10 +23,18 @@ export default function TodoList() {
         )}
         {todoList.length ? (
           todoList.map((todo) => (
-            <Todo key={todo.id} id={todo.id} completed={todo.completed} name={todo.name} priority={todo.priority} />
+            <Todo
+              key={todo.id}
+              id={todo.id}
+              completed={todo.completed}
+              name={todo.name}
+              priority={todo.priority}
+            />
           ))
         ) : (
-          <div className="text-center">No result founded!</div>
+          <div className="flex items-center justify-center h-full">
+            No result founded!
+          </div>
         )}
       </Col>
     </Row>

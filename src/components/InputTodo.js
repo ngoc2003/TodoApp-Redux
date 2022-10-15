@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Input, Select, Tag, notification } from "antd";
+import { Button, Col, Input, Select, Tag, notification } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../redux/actions";
@@ -22,7 +22,6 @@ const InputTodo = () => {
         notification.error(notiConfig.addError);
       } else {
         dispatch(
-          //action
           addTodo({
             id: uuidv4(),
             name: name,

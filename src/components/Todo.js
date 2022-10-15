@@ -2,13 +2,11 @@ import { Row, Tag, Checkbox } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { completedTodo } from "../redux/actions";
-
 const priorityColorMapping = {
   High: "red",
   Medium: "blue",
   Low: "gray",
 };
-
 export default function Todo({ name, priority, completed, id }) {
   const dispatch = useDispatch();
   const [checked, setChecked] = useState(completed);
@@ -22,7 +20,6 @@ export default function Todo({ name, priority, completed, id }) {
       })
     );
   };
-
   return (
     <Row
       justify="space-between"

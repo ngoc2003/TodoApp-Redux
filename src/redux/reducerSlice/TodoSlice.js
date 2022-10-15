@@ -1,34 +1,22 @@
-const initState = [
-  {
-    id: 1,
-    name: "Learn yoga",
-    priority: "Medium",
-    completed: false,
-  },
-  {
-    id: 2,
-    name: "Learn html",
-    priority: "High",
-    completed: true,
-  },
-  {
-    id: 3,
-    name: "Learn css",
-    priority: "Low",
-    completed: false,
-  },
-];
+const initState = localStorage.getItem("todos")
+  ? JSON.parse(localStorage.getItem("todos"))
+  : [];
 export const TodoReducer = (state = initState, action) => {
   switch (action.type) {
-    case "add":
-      return [...state, action.payload];
+    case "add": {
+      let result = [...state, action.payload];
+      localStorage.setItem("todos", JSON.stringify(result));
+
+      return [...result];
+    }
     case "completedTodo":
       const dataChangeIndex = state.findIndex(
         (item) => item.id === action.payload.id
       );
-      const stateClone = [...state];
-      stateClone[dataChangeIndex].completed = action.payload.completed;
-      return [...stateClone];
+      let result = [...state];
+      result[dataChangeIndex].completed = action.payload.completed;
+      localStorage.setItem("todos", JSON.stringify(result));
+      return [...result];
     default: {
       return state;
     }
