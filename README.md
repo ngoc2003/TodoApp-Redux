@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Preview Todo
+
+![Todo App with Redux and Tailwind by Bui Ngoc](./public/previewTodo.jpg)
+
 ## Available Scripts
 
 In the project directory, you can run:
