@@ -1,5 +1,3 @@
-// import { createSelector } from "reselect";
-
 const searchValueSelector = (state) => state.filters.search;
 const statusValueSelector = (state) => state.filters.status;
 const priorValueSelector = (state) => state.filters.priority;

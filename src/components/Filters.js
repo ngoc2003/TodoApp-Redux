@@ -1,27 +1,27 @@
 import { Col, Row, Input, Typography, Radio, Select, Tag } from "antd";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { priorFilter, searchFilter, statusFilter } from "../redux/actions";
+import  filterSlice  from "../redux/reducerSlice/FilterSlice";
 const { Search } = Input;
 
 export default function Filters() {
   const [searchValue, setSearchValue] = useState("");
-  const [filterStatus, setFilterStatus] = useState('all')
-  const [filterPrior, setFilterPrior] = useState([])
-  const dispatch = useDispatch()
+  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterPrior, setFilterPrior] = useState([]);
+  const dispatch = useDispatch();
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-    dispatch(searchFilter(e.target.value))
+    dispatch(filterSlice.actions.searchFilter(e.target.value));
   };
   const handleStatusChange = (e) => {
-    setFilterStatus(e.target.value)
-    dispatch(statusFilter(e.target.value))
-  }
+    setFilterStatus(e.target.value);
+    dispatch(filterSlice.actions.statusFilter(e.target.value));
+  };
 
   const handlePriorChange = (value) => {
-    setFilterPrior(value)
-    dispatch(priorFilter(value))
-  }
+    setFilterPrior(value);
+    dispatch(filterSlice.actions.priorFilter(value));
+  };
   return (
     <Row justify="center">
       <Col span={24} xs={48}>
@@ -38,13 +38,13 @@ export default function Filters() {
         <Typography.Paragraph className="mt-3 font-bold text-center mg-1 xxs:text-left">
           Filter By Status
         </Typography.Paragraph>
-        <Radio.Group value = {filterStatus} onChange={handleStatusChange}>
+        <Radio.Group value={filterStatus} onChange={handleStatusChange}>
           <Radio value="all">All</Radio>
           <Radio value="completed">Completed</Radio>
           <Radio value="pending">Pending</Radio>
         </Radio.Group>
       </Col>
-      <Col sm={24} xs={48} >
+      <Col sm={24} xs={48}>
         <Typography.Paragraph className="mt-3 font-bold mg-1">
           Filter By Priority
         </Typography.Paragraph>
@@ -53,7 +53,7 @@ export default function Filters() {
           allowClear
           placeholder="Please select"
           style={{ width: "100%" }}
-          value = {filterPrior}
+          value={filterPrior}
           onChange={handlePriorChange}
         >
           <Select.Option value="High" label="High">

@@ -1,48 +1,48 @@
 export const addTodo = (data) => {
   return {
-    type: "add",
+    type: "todoList/add",
     payload: data,
   };
 };
 
 export const deleteTodo = (data) => {
   return {
-    type: "delete",
+    type: "todoList/delete",
     payload: data,
   };
 };
 
 export const updateTodo = (data) => {
   return {
-    type: "update",
+    type: "todoList/update",
     payload: data,
   };
 };
 
 export const completedTodo = (data) => {
   return {
-    type: "completedTodo",
+    type: "todoList/completedTodo",
     payload: data,
   };
 };
 
 export const searchFilter = (value) => {
   return {
-    type: "filterSearch",
+    type: "filters/filterSearch",
     payload: value,
   };
 };
 
 export const statusFilter = (value) => {
   return {
-    type: "filterStatus",
+    type: "filters/filterStatus",
     payload: value,
   };
 };
 
 export const priorFilter = (value) => {
   return {
-    type: "filterPrior",
+    type: "filters/filterPrior",
     payload: value,
   };
 };

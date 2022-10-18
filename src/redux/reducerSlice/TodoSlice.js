@@ -1,44 +1,36 @@
-const initState = localStorage.getItem("todos")
-  ? JSON.parse(localStorage.getItem("todos"))
-  : [];
-
+import { createSlice } from "@reduxjs/toolkit";
 function setDataLocalStorage(result) {
   localStorage.setItem("todos", JSON.stringify(result));
 }
-export const TodoReducer = (state = initState, action) => {
-  switch (action.type) {
-    case "add": {
-      let result = [...state, action.payload];
-      setDataLocalStorage(result);
-      return [...result];
-    }
-    case "delete": {
-      let result = [...state];
-      result.splice(action.payload, 1);
-      setDataLocalStorage(result);
-      return [...result];
-    }
-    case "update": {
-      let result = [...state];
-      let index = result.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      result[index] = {
+const todoSlice = createSlice({
+  name: "todoList",
+  initialState: localStorage.getItem("todos")
+    ? JSON.parse(localStorage.getItem("todos"))
+    : [],
+  reducers: {
+    add: (state, action) => {
+      state.push(action.payload);
+      setDataLocalStorage(state);
+    },
+    delete: (state, action) => {
+      state.splice(action.payload, 1);
+      setDataLocalStorage(state);
+    },
+    update: (state, action) => {
+      let index = state.findIndex((item) => item.id === action.payload.id);
+      state[index] = {
         ...action.payload,
       };
-      setDataLocalStorage(result);
-      return [...result];
-    }
-    case "completedTodo":
+      setDataLocalStorage(state);
+    },
+    completedTodo: (state, action) => {
       const dataChangeIndex = state.findIndex(
         (item) => item.id === action.payload.id
       );
-      let result = [...state];
-      result[dataChangeIndex].completed = action.payload.completed;
-      setDataLocalStorage(result);
-      return [...result];
-    default: {
-      return state;
-    }
-  }
-};
+      state[dataChangeIndex].completed = action.payload.completed;
+      setDataLocalStorage(state);
+    },
+  },
+});
+
+export default todoSlice

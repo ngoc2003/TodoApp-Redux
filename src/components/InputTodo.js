@@ -1,10 +1,9 @@
 import { Button, Col, Input, Select, Tag, notification } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo, updateTodo } from "../redux/actions";
 import { v4 as uuidv4 } from "uuid";
 import { notiConfig } from "./Notification";
-
+import todoListSlice from '../redux/reducerSlice/TodoSlice'
 const InputTodo = ({ update = false, dataUpdate = "", openModal = true }) => {
   const dispatch = useDispatch();
   const [name, setName] = useState(dataUpdate ? dataUpdate.name : "");
@@ -24,7 +23,7 @@ const InputTodo = ({ update = false, dataUpdate = "", openModal = true }) => {
       } else {
         if (!update) {
           dispatch(
-            addTodo({
+            todoListSlice.actions.add({
               id: uuidv4(),
               name: name,
               priority: prior,
@@ -34,7 +33,7 @@ const InputTodo = ({ update = false, dataUpdate = "", openModal = true }) => {
           notification.success(notiConfig.addSuccess);
         } else {
           dispatch(
-            updateTodo({
+            todoListSlice.actions.update({
               id: dataUpdate.id,
               name: name,
               priority: prior,

@@ -1,8 +1,12 @@
-import {createStore} from 'redux'
-import { rootReducer } from './reducers'
+import { configureStore } from "@reduxjs/toolkit";
+import filterSlice from "./reducerSlice/FilterSlice";
+import todoListSlice from "./reducerSlice/TodoSlice";
 
-const store =  createStore(rootReducer)
-// rootReducer => function cập nhật lại giá trị state trong kho store
+const store = configureStore({
+  reducer: {
+    filters: filterSlice.reducer,
+    todoList: todoListSlice.reducer,
+  },
+});
 
-
-export default store
+export default store;
